@@ -38,8 +38,8 @@ This script generates JSON documentation based on the `apiBuilder.js` files.
   ```
 
 - **Parameters**:
-  - `output_path` (optional): The directory where the JSON documentation will be
-    saved. If not specified, the default path is
+  - `output_path` (optional): The directory where the JSON documentation
+    will be saved. If not specified, the default path is
     `../../../../office-js-api-declarations/office-js-api`.
 
 ### `office-api/generate_docs_md.py`
@@ -53,8 +53,8 @@ This script generates Markdown documentation from the `apiBuilder.js` files.
   ```
 
 - **Parameters**:
-  - `output_path` (optional): The directory where the Markdown documentation will
-    be saved. If not specified, the default path is
+  - `output_path` (optional): The directory where the Markdown documentation
+    will be saved. If not specified, the default path is
     `../../../../office-js-api/`.
 
 ### `plugins/generate_docs_methods_json.py`
@@ -68,8 +68,8 @@ This script generates JSON documentation based on the `api_plugins.js` files.
   ```
 
 - **Parameters**:
-  - `output_path` (optional): The directory where the JSON documentation will be
-    saved. If not specified, the default path is
+  - `output_path` (optional): The directory where the JSON documentation
+    will be saved. If not specified, the default path is
     `../../../../office-js-api-declarations/office-js-api-plugins`.
 
 ### `plugins/generate_docs_events_json.py`
@@ -83,8 +83,8 @@ This script generates JSON documentation based on the `plugin-events.js` files.
   ```
 
 - **Parameters**:
-  - `output_path` (optional): The directory where the JSON documentation will be
-    saved. If not specified, the default path is
+  - `output_path` (optional): The directory where the JSON documentation
+    will be saved. If not specified, the default path is
     `../../../../office-js-api-declarations/office-js-api-plugins`.
 
 ### `plugins/generate_docs_methods_md.py`
@@ -98,8 +98,8 @@ This script generates Markdown documentation from the `api_plugins.js` files.
   ```
 
 - **Parameters**:
-  - `output_path` (optional): The directory where the Markdown documentation will
-    be saved. If not specified, the default path is
+  - `output_path` (optional): The directory where the Markdown documentation
+    will be saved. If not specified, the default path is
     `../../../../office-js-api/`.
 
 ### `plugins/generate_docs_events_md.py`
@@ -113,8 +113,8 @@ This script generates Markdown documentation from the `plugin-events.js` files.
   ```
 
 - **Parameters**:
-  - `output_path` (optional): The directory where the Markdown documentation will
-    be saved. If not specified, the default path is
+  - `output_path` (optional): The directory where the Markdown documentation
+    will be saved. If not specified, the default path is
     `../../../../office-js-api/`.
 
 ## Example
