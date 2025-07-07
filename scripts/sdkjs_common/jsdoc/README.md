@@ -1,7 +1,7 @@
 # Documentation Generation Guide
 
-This guide explains how to generate documentation for Onlyoffice Builder and
-Plugins (Methods/Events) API using the following Python scripts:
+This guide explains how to generate documentation for Onlyoffice Builder
+and Plugins (Methods/Events) API using the following Python scripts:
 
 - `office-api/generate_docs_json.py`
 - `office-api/generate_docs_md.py`
@@ -133,6 +133,6 @@ python generate_docs_md.py /path/to/save/markdown
 
 ## Notes
 
-- Make sure to have all necessary permissions to run these scripts and write to
-  the specified directories.
+- Make sure to have all necessary permissions to run these scripts and write
+  to the specified directories.
 - The output directories will be created if they do not exist.
