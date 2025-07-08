@@ -528,20 +528,20 @@ def git_is_ssh():
   if (git_protocol == "ssh"):
     return True
   origin = git_get_origin()
-  if (git_protocol == "auto") and (origin.find(":ONLYOFFICE/") != -1):
+  if (git_protocol == "auto") and (origin.find(":neo-docs/") != -1):
     return True
   return False
 
 def get_ssh_base_url():
   cur_origin = git_get_origin()
-  ind = cur_origin.find(":ONLYOFFICE/")
+  ind = cur_origin.find(":neo-docs/")
   if (ind == -1):
-    return "git@github.com:ONLYOFFICE/"
+    return "git@github.com:neo-docs/"
   return cur_origin[:ind+12]
 
 def git_update(repo, is_no_errors=False, is_current_dir=False, git_owner=""):
   print("[git] update: " + repo)
-  owner = git_owner if git_owner else "ONLYOFFICE"
+  owner = git_owner if git_owner else "neo-docs"
   url = "https://github.com/" + owner + "/" + repo + ".git"
   if git_is_ssh():
     url = get_ssh_base_url() + repo + ".git"
@@ -575,7 +575,7 @@ def get_repositories():
   result["core"] = [False, False]
   result["sdkjs"] = [False, False]
   result.update(get_sdkjs_addons())
-  result["onlyoffice.github.io"] = [False, False]
+  result["neo-docs.github.io"] = [False, False]
   result["web-apps"] = [False, False]
   result["dictionaries"] = [False, False]
   result["core-fonts"] = [False, False]
@@ -614,7 +614,7 @@ def get_branding_repositories(checker):
 
 def create_pull_request(branches_to, repo, is_no_errors=False, is_current_dir=False):
   print("[git] create pull request: " + repo)
-  url = "https://github.com/ONLYOFFICE/" + repo + ".git"
+  url = "https://github.com/neo-docs/" + repo + ".git"
   if git_is_ssh():
     url = get_ssh_base_url() + repo + ".git"
   folder = get_script_dir() + "/../../" + repo
@@ -1353,7 +1353,7 @@ def copy_sdkjs_plugin(src_dir, dst_dir, name, is_name_as_guid=False, is_desktop_
     copy_dir_content(src_dir_path, dst_dir_path, "", ".git")
     if is_desktop_local:
       for file in glob.glob(dst_dir_path + "/*.html"):
-        replaceInFile(file, "https://onlyoffice.github.io/sdkjs-plugins/", "../")
+        replaceInFile(file, "https://neo-docs.github.io/sdkjs-plugins/", "../")
     return
   if not is_file(src_dir_path + "/config.json"):
     return
@@ -1370,7 +1370,7 @@ def copy_sdkjs_plugin(src_dir, dst_dir, name, is_name_as_guid=False, is_desktop_
   copy_dir_content(src_dir_path, dst_dir_path, "", ".git")
   if is_desktop_local:
     for file in glob.glob(dst_dir_path + "/*.html"):
-      replaceInFile(file, "https://onlyoffice.github.io/sdkjs-plugins/", "../")
+      replaceInFile(file, "https://neo-docs.github.io/sdkjs-plugins/", "../")
   dst_deploy_dir = dst_dir_path + "/deploy"
   if is_dir(dst_deploy_dir):
     delete_dir(dst_deploy_dir)
@@ -1382,7 +1382,7 @@ def copy_marketplace_plugin(dst_dir, is_name_as_guid=False, is_desktop_local=Fal
     # old version
     copy_sdkjs_plugin(git_dir + "/desktop-sdk/ChromiumBasedEditors/plugins", dst_dir, "manager", is_name_as_guid, is_desktop_local)
     return
-  src_dir_path = git_dir + "/onlyoffice.github.io/store/plugin"
+  src_dir_path = git_dir + "/neo-docs.github.io/store/plugin"
   name = "marketplace"
   if is_name_as_guid:
     name = "{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}"
@@ -1395,16 +1395,16 @@ def copy_marketplace_plugin(dst_dir, is_name_as_guid=False, is_desktop_local=Fal
   copy_dir_content(src_dir_path, dst_dir_path)
   if is_desktop_local:
     for file in glob.glob(dst_dir_path + "/*.html"):
-      replaceInFile(file, "https://onlyoffice.github.io/sdkjs-plugins/", "../")
+      replaceInFile(file, "https://neo-docs.github.io/sdkjs-plugins/", "../")
 
   if is_store_copy:
-    copy_dir(git_dir + "/onlyoffice.github.io/store", dst_dir_path + "/store")
+    copy_dir(git_dir + "/neo-docs.github.io/store", dst_dir_path + "/store")
     delete_dir(dst_dir_path + "/store/plugin")
     delete_dir(dst_dir_path + "/store/plugin-dev")
   return
 
 def copy_sdkjs_plugins(dst_dir, is_name_as_guid=False, is_desktop_local=False, isXp=False):
-  plugins_dir = __file__script__path__ + "/../../onlyoffice.github.io/sdkjs-plugins/content"
+  plugins_dir = __file__script__path__ + "/../../neo-docs.github.io/sdkjs-plugins/content"
   plugins_list_config = config.option("sdkjs-plugin")
   if isXp:
     plugins_list_config="photoeditor, macros, highlightcode, doc2md"
@@ -1416,7 +1416,7 @@ def copy_sdkjs_plugins(dst_dir, is_name_as_guid=False, is_desktop_local=False, i
   return
 
 def copy_sdkjs_plugins_server(dst_dir, is_name_as_guid=False, is_desktop_local=False):
-  plugins_dir = __file__script__path__ + "/../../onlyoffice.github.io/sdkjs-plugins/content"
+  plugins_dir = __file__script__path__ + "/../../neo-docs.github.io/sdkjs-plugins/content"
   plugins_list_config = config.option("sdkjs-plugin-server")
   if ("" == plugins_list_config):
     return
@@ -1428,9 +1428,9 @@ def copy_sdkjs_plugins_server(dst_dir, is_name_as_guid=False, is_desktop_local=F
 def support_old_versions_plugins(out_dir):
   if is_file(out_dir + "/pluginBase.js"):
     return
-  download("https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js", out_dir + "/plugins.js")
-  download("https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js", out_dir + "/plugins-ui.js")
-  download("https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css", out_dir + "/plugins.css")
+  download("https://neo-docs.github.io/sdkjs-plugins/v1/plugins.js", out_dir + "/plugins.js")
+  download("https://neo-docs.github.io/sdkjs-plugins/v1/plugins-ui.js", out_dir + "/plugins-ui.js")
+  download("https://neo-docs.github.io/sdkjs-plugins/v1/plugins.css", out_dir + "/plugins.css")
   content_plugin_base = ""
   with open(get_path(out_dir + "/plugins.js"), "r") as file:
     content_plugin_base += file.read()
@@ -1574,12 +1574,12 @@ def copy_v8_files(core_dir, deploy_dir, platform, is_xp=False):
 def clone_marketplace_plugin(out_dir, is_name_as_guid=False, is_replace_paths=False, is_delete_git_dir=True, git_owner=""):  
   old_cur = os.getcwd()
   os.chdir(out_dir)
-  git_update("onlyoffice.github.io", False, True, git_owner)
+  git_update("neo-docs.github.io", False, True, git_owner)
   os.chdir(old_cur)
 
   dst_dir_name = "marketplace"
   if is_name_as_guid:
-    config_content = readFile(out_dir + "/onlyoffice.github.io/store/plugin/config.json")
+    config_content = readFile(out_dir + "/neo-docs.github.io/store/plugin/config.json")
     index_start = config_content.find("\"asc.{")
     index_start += 5
     index_end = config_content.find("}", index_start)
@@ -1591,14 +1591,14 @@ def clone_marketplace_plugin(out_dir, is_name_as_guid=False, is_replace_paths=Fa
 
   if is_dir(dst_dir_path):
     delete_dir(dst_dir_path)
-  copy_dir(out_dir + "/onlyoffice.github.io/store/plugin", dst_dir_path)
+  copy_dir(out_dir + "/neo-docs.github.io/store/plugin", dst_dir_path)
   
   if is_replace_paths:
     for file in glob.glob(dst_dir_path + "/*.html"):
-      replaceInFile(file, "https://onlyoffice.github.io/sdkjs-plugins/", "../")
+      replaceInFile(file, "https://neo-docs.github.io/sdkjs-plugins/", "../")
         
   if is_delete_git_dir:
-    delete_dir_with_access_error(out_dir + "/onlyoffice.github.io")
+    delete_dir_with_access_error(out_dir + "/neo-docs.github.io")
   return
 
 def correctPathForBuilder(path):
